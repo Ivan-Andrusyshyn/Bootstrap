@@ -1,0 +1,25 @@
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.btn-outline-dark {
+  color: #fff;
+  border-color: #fff;
+}
+.is-hidden {
+  display: none;
+  opacity: 0;
+}
+body {
+  background-color: #ffe0b27c;
+}
+p {
+  margin: 0;
+  font-size: 12px;
+}
+html {
+  scroll-behavior: smooth;
+}
