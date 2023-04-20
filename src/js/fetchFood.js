@@ -4,7 +4,6 @@ export class NewApiService {
   #KEY = 'key=34935251-caa237a886f8fd2167ae0727c';
   page = 1;
   query = null;
-  dataSaver = null;
   async makeFetch() {
     try {
       return await axios.get(`${this.#URL}?${this.#KEY}`, {
@@ -14,7 +13,23 @@ export class NewApiService {
           orientation: 'horizontal',
           safesearch: true,
           page: this.page,
-          per_page: 20,
+          per_page: 30,
+        },
+      });
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+  async makeImgFone() {
+    try {
+      return await axios.get(`${this.#URL}?${this.#KEY}`, {
+        params: {
+          q: 'car',
+          image_type: 'photo',
+          orientation: 'horizontal',
+          safesearch: true,
+          page: this.page,
+          per_page: 30,
         },
       });
     } catch (err) {
@@ -22,4 +37,6 @@ export class NewApiService {
     }
   }
 }
+export const api = new NewApiService();
+
 // <===========================AXIOS=====================>

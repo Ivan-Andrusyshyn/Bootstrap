@@ -1,17 +1,19 @@
 import Pagination from 'tui-pagination';
-import { NewApiService } from './fetchFood';
+import { api } from './fetchFood';
 import { cleanImg } from '..';
-import { makeImgOnSubm } from '..';
+import { makeImgOnSubm, makeImg } from '..';
 
 const container = document.querySelector('.tui-pagination');
+let paginationPopularimg;
 let paginationSearch;
+
 function notActive(itemsTotal) {
   paginationSearch = new Pagination(container, {
     totalItems: itemsTotal,
-    itemsPerPage: 20,
-    visiblePages: 5,
+    itemsPerPage: 30,
+    visiblePages: 4,
     centerAlign: true,
-    page: makeApi.page,
+    page: api.page,
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
   });
@@ -19,9 +21,28 @@ function notActive(itemsTotal) {
 }
 function go(value) {
   value.on('beforeMove', event => {
-    makeApi.page = event.page;
+    api.page = event.page;
     cleanImg();
     makeImgOnSubm();
   });
 }
-export { notActive };
+// ======================defoult pagination=============>
+function makePagin() {
+  paginationPopularimg = new Pagination(container, {
+    totalItems: 500,
+    itemsPerPage: 30,
+    visiblePages: 4,
+    centerAlign: true,
+    page: api.page,
+  });
+  // ==========================
+  if (container) {
+    paginationPopularimg.on('afterMove', e => {
+      api.page = e.page;
+      cleanImg();
+      makeImg();
+    });
+  }
+}
+
+export { notActive, makePagin };
