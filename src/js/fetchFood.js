@@ -3,7 +3,7 @@ export class NewApiService {
   #URL = 'https://pixabay.com/api/';
   #KEY = 'key=34935251-caa237a886f8fd2167ae0727c';
   page = 1;
-  query = null;
+  query = 'car';
   async makeFetch() {
     try {
       return await axios.get(`${this.#URL}?${this.#KEY}`, {
@@ -24,7 +24,7 @@ export class NewApiService {
     try {
       return await axios.get(`${this.#URL}?${this.#KEY}`, {
         params: {
-          q: 'car',
+          q: this.query,
           image_type: 'photo',
           orientation: 'horizontal',
           safesearch: true,

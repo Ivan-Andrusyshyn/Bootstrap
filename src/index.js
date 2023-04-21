@@ -10,13 +10,24 @@ const formGallery = document.querySelector('[data-search-forms]');
 const btnForm = document.querySelector('[type="submit"]');
 const wrapDiv = document.querySelector('.fixed-top');
 const btnHome = document.querySelector('.HOME');
-
+const navCtegories = document.querySelector('.dropdown-menu');
 const lightbox = new SimpleLightbox('.gallery a', {});
 formGallery.addEventListener('submit', newPhotoOnSubmit);
 btnHome.addEventListener('click', () => {
   cleanImg();
   makeImg();
 });
+navCtegories.addEventListener('click', takeCategiries);
+function takeCategiries(e) {
+  api.page = 1;
+
+  const f = e.target.id;
+  api.query = f;
+  console.log(f);
+  cleanImg();
+  makeImg();
+}
+
 function newPhotoOnSubmit(e) {
   e.preventDefault();
   let inputForm = e.currentTarget.elements.searchQuery.value.trim();
