@@ -1,8 +1,8 @@
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { api } from './js/fetchFood';
-import { dataCardTemp } from './js/dataCardTemp';
+import { api } from './js/fetches';
+import { dataCardTemp } from './js/dataTemp';
 import { notActive, makePagin } from './js/pagination';
 
 const gallery = document.querySelector('[gallery-active]');

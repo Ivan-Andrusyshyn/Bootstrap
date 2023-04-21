@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import { api } from './fetchFood';
+import { api } from './fetches';
 import { cleanImg } from '..';
 import { makeImgOnSubm, makeImg } from '..';
 
