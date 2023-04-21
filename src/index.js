@@ -14,6 +14,7 @@ const navCtegories = document.querySelector('.dropdown-menu');
 const lightbox = new SimpleLightbox('.gallery a', {});
 formGallery.addEventListener('submit', newPhotoOnSubmit);
 btnHome.addEventListener('click', () => {
+  api.query = 'people';
   cleanImg();
   makeImg();
 });

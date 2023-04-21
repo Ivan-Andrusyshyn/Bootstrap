@@ -13,8 +13,15 @@
   display: none;
   opacity: 0;
 }
+img {
+  display: block;
+  width: 100%;
+}
 body {
   background-color: #ffe0b27c;
+}
+li {
+  list-style: none;
 }
 a {
   text-decoration: none;
