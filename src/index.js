@@ -1,6 +1,5 @@
 import Notiflix from 'notiflix';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+
 import { api } from './js/fetches';
 import { dataCardTemp } from './js/dataTemp';
 import { notActive, makePagin } from './js/pagination';
@@ -11,7 +10,8 @@ const btnForm = document.querySelector('[type="submit"]');
 const wrapDiv = document.querySelector('.fixed-top');
 const btnHome = document.querySelector('.HOME');
 const navCtegories = document.querySelector('.dropdown-menu');
-const lightbox = new SimpleLightbox('.gallery a', {});
+const container = document.querySelector('.tui-pagination');
+
 formGallery.addEventListener('submit', newPhotoOnSubmit);
 btnHome.addEventListener('click', () => {
   api.query = 'people';
@@ -67,25 +67,17 @@ export async function makeImg() {
 }
 function markup(response) {
   gallery.insertAdjacentHTML('beforeend', dataCardTemp(response));
-  lightbox.refresh();
 }
 
 export function cleanImg() {
   gallery.innerHTML = '';
+  container.classList.remove('is-hidden');
 }
 function noticeDeclaretion(value) {
   if (value.hits.length === 0) {
+    container.classList.add('is-hidden');
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
-      { timeout: 1000 }
-    );
-  } else if (value.hits.length > 0 && api.page == 1) {
-    Notiflix.Notify.success(`Hooray! We found ${value.totalHits} images.`, {
-      timeout: 1000,
-    });
-  } else if (api.lengOfValue < 40) {
-    Notiflix.Notify.info(
-      "We're sorry, but you've reached the end of search results.",
       { timeout: 1000 }
     );
   }
