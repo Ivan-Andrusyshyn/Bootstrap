@@ -6,14 +6,12 @@
 }
 // =====================================
 
-
 .btn_toTop_wrapp {
   place-self: end;
   position: sticky;
   bottom: 20px;
   right: 0;
   margin-right: 20px;
-  --offset: 100px;
   margin-top: calc(100vh + var(--offset));
   @media screen and (min-width: 768px) {
     display: none;
@@ -23,10 +21,10 @@
 }
 
 .toTopBtn {
+  text-decoration: none;
   bottom: 30px;
   right: 0;
   margin-top: 100vh;
-  font-family: inherit;
   position: absolute;
   /* visual styling */
   text-decoration: none;

@@ -9,10 +9,14 @@ const gallery = document.querySelector('[gallery-active]');
 const formGallery = document.querySelector('[data-search-forms]');
 const btnForm = document.querySelector('[type="submit"]');
 const wrapDiv = document.querySelector('.fixed-top');
+const btnHome = document.querySelector('.HOME');
+
 const lightbox = new SimpleLightbox('.gallery a', {});
-
 formGallery.addEventListener('submit', newPhotoOnSubmit);
-
+btnHome.addEventListener('click', () => {
+  cleanImg();
+  makeImg();
+});
 function newPhotoOnSubmit(e) {
   e.preventDefault();
   let inputForm = e.currentTarget.elements.searchQuery.value.trim();
@@ -37,10 +41,12 @@ export async function makeImgOnSubm() {
     formGallery.reset();
   }
 }
+makeImg();
 // =========================>
 export async function makeImg() {
   try {
     const { data } = await api.makeImgFone();
+    makePagin();
     noticeDeclaretion(data);
     markup(data);
   } catch (err) {
@@ -48,26 +54,7 @@ export async function makeImg() {
     Notiflix.Notify.failure('Oops, something went wrong...');
   }
 }
-
-function noticeDeclaretion(value) {
-  if (value.hits.length === 0) {
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.',
-      { timeout: 3000 }
-    );
-  } else if (value.hits.length > 0 && api.page == 1) {
-    Notiflix.Notify.success(`Hooray! We found ${value.totalHits} images.`, {
-      timeout: 2000,
-    });
-  } else if (api.lengOfValue < 40) {
-    Notiflix.Notify.info(
-      "We're sorry, but you've reached the end of search results.",
-      { timeout: 3000 }
-    );
-  }
-}
 function markup(response) {
-  makePagin();
   gallery.insertAdjacentHTML('beforeend', dataCardTemp(response));
   lightbox.refresh();
 }
@@ -75,6 +62,24 @@ function markup(response) {
 export function cleanImg() {
   gallery.innerHTML = '';
 }
+function noticeDeclaretion(value) {
+  if (value.hits.length === 0) {
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.',
+      { timeout: 1000 }
+    );
+  } else if (value.hits.length > 0 && api.page == 1) {
+    Notiflix.Notify.success(`Hooray! We found ${value.totalHits} images.`, {
+      timeout: 1000,
+    });
+  } else if (api.lengOfValue < 40) {
+    Notiflix.Notify.info(
+      "We're sorry, but you've reached the end of search results.",
+      { timeout: 1000 }
+    );
+  }
+}
+
 // ==================> !scroll
 function scrollSmooth() {
   let hScreen = wrapDiv.getBoundingClientRect();

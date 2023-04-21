@@ -16,10 +16,29 @@
 body {
   background-color: #ffe0b27c;
 }
+a {
+  text-decoration: none;
+  display: block;
+}
 p {
   margin: 0;
   font-size: 12px;
 }
 html {
   scroll-behavior: smooth;
+}
+.nav-link {
+  position: relative;
+}
+
+.el:hover::after,
+.el:focus::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  width: 5px;
+  height: 5px;
+  background-color: red;
+  border-radius: 50%;
 }

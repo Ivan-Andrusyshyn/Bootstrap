@@ -35,14 +35,15 @@ function makePagin() {
     centerAlign: true,
     page: api.page,
   });
-  // ==========================
-  if (container) {
-    paginationPopularimg.on('afterMove', e => {
-      api.page = e.page;
-      cleanImg();
-      makeImg();
-    });
-  }
+  paginGo(paginationPopularimg);
+}
+// ==========================
+function paginGo(value) {
+  value.on('afterMove', e => {
+    api.page = e.page;
+    cleanImg();
+    makeImg();
+  });
 }
 
 export { notActive, makePagin };
