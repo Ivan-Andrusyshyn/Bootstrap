@@ -23,7 +23,6 @@ function takeCategiries(e) {
 
   const f = e.target.id;
   api.query = f;
-  console.log(f);
   cleanImg();
   makeImg();
 }
